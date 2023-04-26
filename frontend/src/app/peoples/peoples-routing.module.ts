@@ -5,6 +5,7 @@ import { ListPeopleComponent } from './list-people/list-people.component';
 
 const routes: Routes = [
   { path: 'peoples-form', component: PleopesFormComponent },
+  { path: 'peoples-form/:id', component: PleopesFormComponent },
   { path: 'list-people', component: ListPeopleComponent }
 ];
 

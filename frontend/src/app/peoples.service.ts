@@ -18,7 +18,15 @@ export class PeoplesService {
     return this.http.post<People>(`${this.apiURL}`, people);
   }
 
+  update( people: People ) : Observable<any> {
+    return this.http.put<People>(`${this.apiURL}/${people.id}`, people);
+  }
+
   getPeople(): Observable<People[]> {
     return this.http.get<People[]>(this.apiURL);
+  }
+
+  getPeopleById(id: number): Observable<People> {
+    return this.http.get<any>(`${this.apiURL}/${id}`);
   }
 }

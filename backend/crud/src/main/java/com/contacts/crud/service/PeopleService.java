@@ -57,6 +57,10 @@ public class PeopleService {
 				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Data de nascimento não pode ser maior que a data atual");
 			}
 			
+			if (people.getCpf().length() > 11) {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CPF tem que ter menos de 11 caracteres");
+			}
+			
 			return resopitory.save(people);
 		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada"));
 	}
