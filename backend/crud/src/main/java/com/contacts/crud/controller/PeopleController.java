@@ -1,5 +1,7 @@
 package com.contacts.crud.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -27,13 +29,19 @@ public class PeopleController {
 	@Autowired
 	private PeopleService service;
 
-	@GetMapping
+	@GetMapping(value = "/list")
 	@ResponseStatus(code = HttpStatus.OK)
 	public @ResponseBody Page<People> list(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "size", defaultValue = "10") Integer sizePage
 			) {
 		return service.list(page, sizePage);
+	}
+	
+	@GetMapping
+	@ResponseStatus(code = HttpStatus.OK)
+	public @ResponseBody List<People> listAll() {
+		return service.listAll();
 	}
 
 	@GetMapping(value = "/{id}")

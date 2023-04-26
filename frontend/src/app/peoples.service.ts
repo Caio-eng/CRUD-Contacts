@@ -20,9 +20,6 @@ export class PeoplesService {
 
   getPeople(): People {
     let people: People = new People();
-    people.name = "Fuluno";
-    people.cpf = "65485269874";
-    people.dateBirth = "20/04/2020"
     return people;
   }
 }

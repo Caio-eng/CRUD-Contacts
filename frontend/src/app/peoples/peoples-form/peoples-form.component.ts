@@ -10,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class PleopesFormComponent implements OnInit {
 
   people: People;
+  success: boolean = false;
+  errors: String[];
 
   constructor(private service: PeoplesService) {
     this.people = new People();
@@ -22,7 +24,12 @@ export class PleopesFormComponent implements OnInit {
     this.service
     .insert(this.people)
     .subscribe( response => {
-      console.log(response);
+      this.success = true;
+      this.errors = [];
+      this.people = response;
+    }, errorResponse => {
+      this.success = false;
+      this.errors = errorResponse.error.errors;
     })
   }
 

@@ -1,6 +1,7 @@
 package com.contacts.crud.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,6 +24,10 @@ public class PeopleService {
 		return resopitory.findAll(pageRequest);
 	}
 	
+	public List<People> listAll() {
+		return resopitory.findAll();
+	}
+	
 	public People findId(Integer id) {
 		return resopitory.findById(id)
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada"));
@@ -33,6 +38,10 @@ public class PeopleService {
 		
 		if ( people.getDateBirth().isAfter(dateNow) ) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Data de nascimento não pode ser maior que a data atual");
+		}
+		
+		if (people.getCpf().length() > 11) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CPF tem que ter menos de 11 caracteres");
 		}
 		return resopitory.save(people);
 	}
