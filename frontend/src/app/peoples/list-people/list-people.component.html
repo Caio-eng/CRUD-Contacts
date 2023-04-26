@@ -3,6 +3,18 @@
   <li class="breadcrumb-item active">Consulta</li>
 </ol>
 <div class="container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-success" role="alert" *ngIf="messageSuccess">
+        {{ messageSuccess }}
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="messageError">
+          {{ messageError }}
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-md-2">
       <button class="btn btn-warning" (click) = "newPeople()">
@@ -33,10 +45,35 @@
                 routerLink="/peoples-form/{{ people.id }}" >
                 <i class="fa fa-edit"></i>
               </button>
+
+              <button class="btn btn-danger" (click) = "preparedDelete(people)"
+                data-toggle="modal" data-target="#modalDelecao">
+                <i class="fa fa-trash"></i>
+              </button>
+
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <div id="modalDelecao" class="modal fade" role="dialog">
+    <div  class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Confirmação</h4>
+        </div>
+
+        <div class="modal-body" *ngIf ="selectedPeople">
+          Confirma a deleção do(a) Pessoa {{ selectedPeople.name }}?
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-success" (click) = "deletePeople()" data-dismiss="modal">Confirmar</button>
+          <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
-<h1 class="mt-4">Cadastrar Pessoa</h1>
+<h1 class="mt-4">{{ people.id ? 'Editar Pessoa' : 'Cadastrar Pessoa'}}</h1>
 <ol class="breadcrumb mb-4">
-  <li class="breadcrumb-item active">{{ people.id ? 'Edição' : 'Cadastro'}}</li>
+  <li class="breadcrumb-item active"></li>
 </ol>
 <div class="container">
   <form #peopleForm="ngForm" (ngSubmit)="onSubmit()">

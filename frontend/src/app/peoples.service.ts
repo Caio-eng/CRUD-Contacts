@@ -22,6 +22,10 @@ export class PeoplesService {
     return this.http.put<People>(`${this.apiURL}/${people.id}`, people);
   }
 
+  delete(people: People) : Observable<any> {
+    return this.http.delete<any>(`${this.apiURL}/${people.id}`);
+  }
+
   getPeople(): Observable<People[]> {
     return this.http.get<People[]>(this.apiURL);
   }
