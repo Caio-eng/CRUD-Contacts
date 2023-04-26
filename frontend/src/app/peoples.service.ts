@@ -18,8 +18,7 @@ export class PeoplesService {
     return this.http.post<People>(`${this.apiURL}`, people);
   }
 
-  getPeople(): People {
-    let people: People = new People();
-    return people;
+  getPeople(): Observable<People[]> {
+    return this.http.get<People[]>(this.apiURL);
   }
 }

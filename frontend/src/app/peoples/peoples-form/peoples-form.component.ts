@@ -1,6 +1,7 @@
 import { PeoplesService } from './../../peoples.service';
 import { People } from './people';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pleopes-form',
@@ -13,7 +14,10 @@ export class PleopesFormComponent implements OnInit {
   success: boolean = false;
   errors: String[];
 
-  constructor(private service: PeoplesService) {
+  constructor(
+    private service: PeoplesService,
+    private router: Router
+    ) {
     this.people = new People();
    }
 
@@ -31,6 +35,10 @@ export class PleopesFormComponent implements OnInit {
       this.success = false;
       this.errors = errorResponse.error.errors;
     })
+  }
+
+  backList() {
+    this.router.navigate(['/list-people'])
   }
 
 }

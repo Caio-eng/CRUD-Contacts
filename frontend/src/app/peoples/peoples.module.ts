@@ -4,18 +4,21 @@ import { FormsModule } from '@angular/forms';
 
 import { PeoplesRoutingModule } from './peoples-routing.module';
 import { PleopesFormComponent } from './peoples-form/peoples-form.component';
+import { ListPeopleComponent } from './list-people/list-people.component';
 
 
 @NgModule({
   declarations: [
-    PleopesFormComponent
+    PleopesFormComponent,
+    ListPeopleComponent
   ],
   imports: [
     CommonModule,
     PeoplesRoutingModule,
     FormsModule
   ], exports: [
-    PleopesFormComponent
+    PleopesFormComponent,
+    ListPeopleComponent
   ]
 })
 export class PeoplesModule { }
