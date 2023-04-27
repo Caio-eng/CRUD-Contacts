@@ -1,1 +1,64 @@
-<p>contact-list works!</p>
+<h1 class="mt-4">Contatos</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrum-bitem active">Consulta</li>
+</ol>
+<div class="container">
+  <form #consultaForm="ngForm" (submit)="consult()">
+    <div class="row">
+      <div class="col-md-6">
+        <label for="inputNome">Nome da Pessoa:</label>
+        <input type="text" [(ngModel)]="name"
+               name="nome" class="form-control"
+               id="inputNome"/>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="row">
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-primary">
+          <i class="fa fa-search"></i> Consultar
+        </button>
+
+        <button type="button"
+                routerLink="/contact-form"
+                class="btn btn-warning ml-1">
+          <i class="fa fa-plus"></i> Novo
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <br />
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="alert">
+        <div class="alert alert-warning" role="alert" *ngIf="message">
+          {{ message }}
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Pessoa</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let s of list">
+            <td>{{ s.people.name }}</td>
+            <td>{{ s.name }}</td>
+            <td>{{ s.phone }}</td>
+            <td>{{ s.email }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
