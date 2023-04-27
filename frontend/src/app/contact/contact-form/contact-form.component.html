@@ -74,7 +74,13 @@
           <i class="fa fa-sync-alt"></i> Atualizar
         </button>
 
-          <button type="button"
+          <button type="button" *ngIf="!contact.id"
+            routerLink="/list-people"
+            class="btn btn-danger ml-1">
+            <i class="fa fa-arrow-alt-circle-left"></i>
+            Voltar</button>
+
+            <button type="button" *ngIf="contact.id"
             routerLink="/contact-list"
             class="btn btn-danger ml-1">
             <i class="fa fa-arrow-alt-circle-left"></i>

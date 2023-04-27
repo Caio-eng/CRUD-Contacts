@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { People } from 'src/app/peoples/peoples-form/people';
 import { PeoplesService } from 'src/app/peoples.service';
 import { Observable } from 'rxjs';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-form',
@@ -21,7 +21,8 @@ export class ContactFormComponent implements OnInit {
   constructor(
     private peoplesService: PeoplesService,
     private service: ContactService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.contact = new Contact();
     let params: Observable<Params> = this.activatedRoute.params;
@@ -51,6 +52,7 @@ export class ContactFormComponent implements OnInit {
         (response) => {
           this.success = true;
           this.errors = [];
+          this.router.navigate(['/contact-list']);
         },
         (errorResponse) => {
           this.errors = ['Erro ao atualizar o Contato.'];
@@ -62,6 +64,7 @@ export class ContactFormComponent implements OnInit {
           this.success = true;
           this.errors = [];
           this.contact = new Contact();
+          this.router.navigate(['/contact-list']);
         },
         (errorResponse) => {
           this.success = false;

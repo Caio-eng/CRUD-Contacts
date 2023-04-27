@@ -19,7 +19,7 @@ export class PleopesFormComponent implements OnInit {
   constructor(
     private service: PeoplesService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
     ) {
     this.people = new People();
     let params : Observable<Params> = this.activatedRoute.params;
@@ -50,6 +50,7 @@ export class PleopesFormComponent implements OnInit {
         .subscribe(response => {
           this.success = true;
           this.errors = [];
+          this.router.navigate(['/list-people']);
         }, errorResponse => {
           this.errors = ['Erro ao atualizar a Pessoa.']
         })
@@ -60,6 +61,7 @@ export class PleopesFormComponent implements OnInit {
         this.success = true;
         this.errors = [];
         this.people = response;
+        this.router.navigate(['/list-people']);
       }, errorResponse => {
         this.success = false;
         this.errors = errorResponse.error.errors;

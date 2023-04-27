@@ -43,7 +43,8 @@
       <div class="col-md-6">
         <div class="form-group">
           <label>Data de Nascimento: *</label>
-          <input type="text" class="form-control" [(ngModel)]="people.dateBirth" name="dateBirth" />
+          <input type="text" class="form-control" [(ngModel)]="people.dateBirth" name="dateBirth" placeholder="dd/mm/yyyy" />
+          <span>Só aceita salvar dd/mm/yyyy</span>
         </div>
       </div>
     </div>
