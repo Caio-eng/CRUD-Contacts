@@ -44,7 +44,7 @@
         <thead>
           <tr>
             <th>Pessoa</th>
-            <th>Nome</th>
+            <th>Contato</th>
             <th>Telefone</th>
             <th>Email</th>
           </tr>
@@ -56,9 +56,39 @@
             <td>{{ s.name }}</td>
             <td>{{ s.phone }}</td>
             <td>{{ s.email }}</td>
+            <td>
+              <button class="btn btn-primary"
+                routerLink="/contact-form/{{ s.id }}" >
+                <i class="fa fa-edit"></i>
+              </button>
+
+              <button class="btn btn-danger" (click) = "preparedDelete(s)"
+                data-toggle="modal" data-target="#modalDelecao">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <div id="modalDelecao" class="modal fade" role="dialog">
+    <div  class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Confirmação</h4>
+        </div>
+
+        <div class="modal-body" *ngIf ="selectedContact">
+          Confirma a deleção do(a) Contato {{ selectedContact.name }} ?
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-success" (click) = "deleteContact()" data-dismiss="modal">Confirmar</button>
+          <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

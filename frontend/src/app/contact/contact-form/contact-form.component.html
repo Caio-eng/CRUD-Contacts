@@ -1,4 +1,4 @@
-<h1 class="mt-4">Cadastrar Contato</h1>
+<h1 class="mt-4">{{ contact.id ? 'Editar Contato' : 'Cadastrar Contato'}}</h1>
 <ol class="breadcrumb mb-4">
   <li class="breadcrumb-item active">Novo</li>
 </ol>
@@ -19,11 +19,11 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-          <label>Cliente: </label>
+          <label>Pessoa: </label>
           <select class="form-control"
                   [ngModelOptions]="{standalone: true}"
                   [(ngModel)]="contact.idPeople">
-            <option value="">Selecione...</option>
+            <option >Selecione...</option>
             <option *ngFor="let people of peoples"
                     [ngValue]="people.id">
                 {{ people.name }}
@@ -66,9 +66,13 @@
 
     <div class="row">
       <div class="col-md-3">
-        <button type="submit" class="btn btn-success">
-          <i class="fa fa-save"></i>
-          Salvar</button>
+        <button type="submit" class="btn btn-success" *ngIf="!contact.id" >
+          <i class="fa fa-save"></i> Salvar
+        </button>
+
+        <button type="submit" class="btn btn-primary" *ngIf="contact.id">
+          <i class="fa fa-sync-alt"></i> Atualizar
+        </button>
 
           <button type="button"
             routerLink="/contact-list"

@@ -19,6 +19,14 @@ export class ContactService {
     return this.http.post<Contact>(this.apiURL, contact);
   }
 
+  update( contact: Contact ) : Observable<any> {
+    return this.http.put<Contact>(`${this.apiURL}/${contact.id}`, contact);
+  }
+
+  delete(contact: QuestContact) : Observable<any> {
+    return this.http.delete<any>(`${this.apiURL}/${contact.id}`);
+  }
+
   lookUp(name: string) : Observable<QuestContact[]> {
 
     const httpParams = new HttpParams()
@@ -26,5 +34,13 @@ export class ContactService {
 
       const url = this.apiURL + "?" + httpParams.toString();
       return this.http.get<any>(url);
+  }
+
+  getContact(): Observable<Contact[]> {
+    return this.http.get<Contact[]>(this.apiURL);
+  }
+
+  getContactById(id: number): Observable<Contact> {
+    return this.http.get<any>(`${this.apiURL}/${id}`);
   }
 }
