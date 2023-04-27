@@ -9,6 +9,7 @@ import {TemplateModule} from './template/template.module';
 import { HomeComponent } from './home/home.component'
 import { PeoplesModule } from './peoples/peoples.module';
 import { PeoplesService } from './peoples.service';
+import { ContactModule } from './contact/contact.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PeoplesService } from './peoples.service';
     HttpClientModule,
     AppRoutingModule,
     TemplateModule,
-    PeoplesModule
+    PeoplesModule,
+    ContactModule
   ],
   providers: [
     PeoplesService
