@@ -51,6 +51,7 @@ public class PeopleService {
 			people.setName(updatePeople.getName());
 			people.setCpf(updatePeople.getCpf());
 			people.setDateBirth(updatePeople.getDateBirth());
+			people.setCEP(updatePeople.getCEP());
 			LocalDate dateNow = LocalDate.now();
 			
 			if ( people.getDateBirth().isAfter(dateNow) ) {

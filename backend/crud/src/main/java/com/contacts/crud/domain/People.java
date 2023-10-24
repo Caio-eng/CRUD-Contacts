@@ -42,6 +42,8 @@ public class People {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dateBirth;
 	
+	private String CEP;
+	
 	@OneToMany(mappedBy = "people", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
 	private List<Contact> contacts = new ArrayList<>();
@@ -51,11 +53,12 @@ public class People {
 
 	public People(Integer id, @NotEmpty(message = "O campo Nome é obrigatório") String name,
 			@CPF(message = "CPF está inválido") @NotNull(message = "O campo CPF é obrigatório") String cpf,
-			@NotNull(message = "O campo Data de Nascimento é obrigatório") @Past LocalDate dateBirth) {
+			@NotNull(message = "O campo Data de Nascimento é obrigatório") @Past LocalDate dateBirth, String cep) {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
 		this.dateBirth = dateBirth;
+		this.CEP = cep;
 	}
 
 	public Integer getId() {
@@ -96,6 +99,14 @@ public class People {
 
 	public void setContacts(List<Contact> contacts) {
 		this.contacts = contacts;
+	}
+
+	public String getCEP() {
+		return CEP;
+	}
+
+	public void setCEP(String cEP) {
+		CEP = cEP;
 	}
 	
 }
