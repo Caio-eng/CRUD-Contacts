@@ -1,4 +1,4 @@
-package com.contacts.crud.controller;
+package com.contacts.crud.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,10 +7,11 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-class Service {
+public class ConnectionAPIService {
+	
 	private static HttpsURLConnection connection;
 	
-	protected Service() {
+	protected ConnectionAPIService() {
 	}
 	
 	protected static HttpsURLConnection getHttpsURLConnection() {
@@ -23,14 +24,12 @@ class Service {
 		try {
 			URL url = new URL("https://brasilapi.com.br/api/" + urlParameter);
 
-			Log.setConsole("Acessando: " + url);
-
 			connection = (HttpsURLConnection) url.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestMethod("GET");
 
-			if (Log.getEnable() && connection.getResponseCode() != HttpsURLConnection.HTTP_OK) {
-				Log.setConsoleError("ERROR. HTTP error code: " + connection.getResponseCode() + "\n");
+			if (connection.getResponseCode() != HttpsURLConnection.HTTP_OK) {
+				System.out.println("ERROR. HTTP error code: " + connection.getResponseCode() + "\n");
 			}
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
@@ -42,13 +41,9 @@ class Service {
 			}
 
 			json = retorno;
-
-			Log.setConsole("Json retornado: " + json);
 			
 		} catch (IOException e) {
-			Log.setConsoleError(e.getMessage());
-			//conector.disconnect();
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 
 		return json;

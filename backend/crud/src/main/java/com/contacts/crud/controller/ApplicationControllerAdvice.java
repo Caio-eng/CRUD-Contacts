@@ -28,7 +28,8 @@ public class ApplicationControllerAdvice {
        return new ApiErrors(messages);
     }
 
-    @ExceptionHandler(ResponseStatusException.class)
+    @SuppressWarnings("rawtypes")
+	@ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity handleResponseStatusExeption(ResponseStatusException ex) {
         String messageError = ex.getMessage();
         HttpStatus codeStatus = (HttpStatus) ex.getStatusCode();
